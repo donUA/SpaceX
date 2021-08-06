@@ -11,8 +11,8 @@ import androidx.room.TypeConverters
  */
 @Entity(tableName = "launch")
  class Launch(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @PrimaryKey
+    val _id: String,
     val mission_name: String? = null,
     val launch_date_unix: Long? = null,
     val launch_success: Boolean? = null,

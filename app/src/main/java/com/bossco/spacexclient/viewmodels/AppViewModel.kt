@@ -46,12 +46,20 @@ class AppViewModel @Inject constructor(private val repository: AppRepository) : 
 
     }
 
-    fun getLaunchData(){
+    fun getLaunchData(
+        start: String?,
+        end: String?,
+        order: String?,
+
+    ){
         viewModelScope.launch {
             repository.getLaunchData(
                 launchMutableData,
                 progressMutableLiveData,
-                messagesMutableLiveData
+                messagesMutableLiveData,
+                start,
+                end,
+                order
             )
         }
 
@@ -66,6 +74,12 @@ class AppViewModel @Inject constructor(private val repository: AppRepository) : 
     fun saveLaunches(launch: List<Launch>){
         viewModelScope.launch {
             repository.saveLaunch(launch)
+        }
+    }
+
+    fun deleteLaunches() {
+        viewModelScope.launch {
+            repository.deleteLaunches()
         }
     }
 

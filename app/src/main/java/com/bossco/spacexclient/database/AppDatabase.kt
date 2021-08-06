@@ -14,7 +14,7 @@ import com.bossco.spacexclient.models.Launch
  * Copyright (c) 2021 Accuret. All rights reserved.
 
  */
-@Database(entities = [Info::class, Launch::class], version = 4)
+@Database(entities = [Info::class, Launch::class], version = 6)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

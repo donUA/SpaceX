@@ -27,4 +27,10 @@ interface AppDao {
 
     @Query("SELECT * FROM launch")
     fun getLaunch(): LiveData<List<Launch>>
+    
+    @Query("DELETE FROM launch")
+    suspend fun deleteLaunch()
+
+    @Query("DELETE FROM info")
+    suspend fun deleteInfo()
 }

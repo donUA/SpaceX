@@ -8,6 +8,14 @@
         <variable
             name="isLoading"
             type="boolean" />
+
+        <variable
+            name="isDataNull"
+            type="boolean" />
+
+        <variable
+            name="isInfoNull"
+            type="boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorSurface"
+            app:titleTextAppearance="?attr/textAppearanceHeadline6"
             app:layout_constraintTop_toBottomOf="@id/progress_bar"
             app:titleTextColor="?attr/colorOnSurface" />
 
@@ -52,6 +61,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -60,8 +71,19 @@
             android:id="@+id/company_info"
             android:layout_margin="@dimen/dimen_1"
             bindInfo="@{info}"
+            isGone="@{isInfoNull}"
             android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/info_title_holder"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/no_info"
+            isGone="@{!isInfoNull}"
+            android:text="@string/info_not_loaded_try_again"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/launches_title_holder"
             app:layout_constraintTop_toBottomOf="@id/info_title_holder"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -88,9 +110,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/recycler_launches"
+            isGone="@{isDataNull}"
             app:layout_constraintTop_toBottomOf="@id/launches_title_holder"
             tools:listitem="@layout/item_launch"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/data_null_txt"
+            android:text="@string/no_results_found"
+            isGone="@{!isDataNull}"
+            app:layout_constraintTop_toBottomOf="@id/launches_title_holder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textAppearance="?attr/textAppearanceSubtitle1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

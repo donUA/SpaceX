@@ -32,15 +32,19 @@ class AppRepository @Inject constructor(
             withTimeout(3_000) {
                 retroInterface.getInfo().enqueue(object : Callback<Info> {
                     override fun onResponse(call: Call<Info>, response: Response<Info>) {
-                        progressMutableLiveData.postValue(false)
+//                        progressMutableLiveData.postValue(false)
                         if (response.isSuccessful) {
-                            infoMutableLiveData.postValue(response.body())
+                            if(response.body()==null){
+                                infoMutableLiveData.postValue(null)
+                            }else {
+                                infoMutableLiveData.postValue(response.body())
+                            }
                         }
                     }
 
                     override fun onFailure(call: Call<Info>, t: Throwable) {
                         infoMutableLiveData.postValue(null)
-                        progressMutableLiveData.postValue(false)
+//                        progressMutableLiveData.postValue(false)
                         messagesMutableLiveData.postValue("Error connecting to SpaceX, check internet connection.")
                     }
 
@@ -55,17 +59,26 @@ class AppRepository @Inject constructor(
     suspend fun getLaunchData(
         launchMutableData: MutableLiveData<List<Launch>>,
         progressMutableLiveData: MutableLiveData<Boolean>,
-        messagesMutableLiveData: MutableLiveData<String>
+        messagesMutableLiveData: MutableLiveData<String>,
+        start: String?,
+        end: String?,
+        order: String?
     ) {
         try {
             progressMutableLiveData.postValue(true)
             withTimeout(3_000) {
                 Timber.i("Fetching launches")
-                retroInterface.getLaunches().enqueue(object : Callback<List<Launch>> {
+                retroInterface.getLaunches(
+                    true,start,end,order
+                ).enqueue(object : Callback<List<Launch>> {
                     override fun onResponse(call: Call<List<Launch>>, response: Response<List<Launch>>) {
                         progressMutableLiveData.postValue(false)
                         if (response.isSuccessful) {
-                            launchMutableData.postValue(response.body())
+                            if(response.body().isNullOrEmpty()){
+                                launchMutableData.postValue(null)
+                            }else {
+                                launchMutableData.postValue(response.body())
+                            }
                         }
                     }
 
@@ -73,7 +86,7 @@ class AppRepository @Inject constructor(
                         Timber.i("onFailure ${t.message}")
                         launchMutableData.postValue(null)
                         progressMutableLiveData.postValue(false)
-                        messagesMutableLiveData.postValue("Error connecting to SpaceX, check internet")
+                        messagesMutableLiveData.postValue("Error connecting to SpaceX, check internet ${t.message}")
                     }
 
                 })
@@ -94,6 +107,10 @@ class AppRepository @Inject constructor(
 
     suspend fun saveLaunch(launch: List<Launch>) {
         appDao.insertLunches(launch)
+    }
+
+    suspend fun deleteLaunches() {
+        appDao.deleteLaunch()
     }
 
 }

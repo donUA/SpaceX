@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SpaceX</string>
-    <string name="info_text_template">%1s was founded by %2s in %3s. It now has %4s employees,%5s launch sites, and is valued at USD %6s</string>
+    <string name="info_text_template">%s was founded by %s in %s. It now has %s employees, %s launch sites, and is valued at USD %s</string>
     <string name="company">COMPANY</string>
     <string name="launches">launches</string>
     <string name="mission_image">mission image</string>
@@ -10,4 +10,11 @@
     <string name="rocket_title">Rocket: </string>
     <string name="rocket_details">%1s / %2s</string>
     <string name="filter">Filter</string>
+    <string name="filter_options">Filter options</string>
+    <string name="select_dates">select year</string>
+    <string name="select_success">select success status</string>
+    <string name="order_by">Order by</string>
+    <string name="no_results_found">No results found</string>
+    <string name="info_not_loaded_try_again">Info not loaded, try again</string>
+    <string name="app_title">ASOS Exercise: SpaceX Client</string>
 </resources>

@@ -71,7 +71,7 @@ class LaunchAdapter(private val mainInterface: MainInterface): ListAdapter<Launc
 
     class LaunchDiff(): DiffUtil.ItemCallback<Launch>(){
         override fun areItemsTheSame(oldItem: Launch, newItem: Launch): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem._id == newItem._id
         }
 
         @SuppressLint("DiffUtilEquals")
