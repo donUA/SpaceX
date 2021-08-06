@@ -4,12 +4,16 @@
 
 package com.bossco.spacexclient.adapters
 
+import android.animation.ObjectAnimator
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bossco.spacexclient.R
 import com.bossco.spacexclient.models.Info
 import com.bossco.spacexclient.models.Rocket
 import com.bossco.spacexclient.utils.DateFormatter
+import com.bumptech.glide.Glide
 import java.util.*
 
 
@@ -46,32 +50,43 @@ fun bindDateTime(view: TextView, date: Long?) {
 }
 
 @BindingAdapter("bindRocket")
-fun bindRocket(view: TextView, rocket: List<Rocket>?) {
+fun bindRocket(view: TextView, rocket: Rocket?) {
 
     rocket?.let {
-        if (!it.isNullOrEmpty()) {
             view.text = view.context.getString(
                 R.string.rocket_details,
-                it[0].rocket_name,
-                it[0].rocket_type
+                it.rocket_name,
+                it.rocket_type
             )
-        }
+
     }
+
+}
+
+
+
+@BindingAdapter("bindMissionImage")
+fun bindMissionImage(view: ImageView, image_url: String?) {
+    image_url?.let {
+        Glide.with(view.context)
+            .load(image_url)
+            .into(view)
+    }
+
+
 
 }
 
 @BindingAdapter("bindDaysTitle")
 fun bindDaysTitle(view: TextView, date: Long?) {
     date?.let {
-        val calenderNow = Calendar.getInstance().apply { timeInMillis = Date().time }
-        val calenderLaunch = Calendar.getInstance().apply { timeInMillis = it }
 
         view.text = when (it > Date().time) {
             true -> {
-                "Days from now"
+                "Days from now: "
             }
             false -> {
-                "Days since now"
+                "Days since now: "
             }
         }
     }
@@ -90,6 +105,28 @@ fun bindDaysText(view: TextView, date: Long?) {
             false -> {
                 val days = (((Date().time - it) / (1000 * 60 * 60 * 24))).toInt()
                 "$days days"
+            }
+        }
+    }
+}
+
+@BindingAdapter("isGone")
+fun bindIsGone(view: View, isGone: Boolean?) {
+
+    isGone?.let {
+
+        when (it) {
+            true -> {
+                val animator = ObjectAnimator.ofFloat(view, View.ALPHA, 0f)
+                animator.duration = 500
+                animator.start()
+                view.visibility = View.GONE
+            }
+            else -> {
+                val animator = ObjectAnimator.ofFloat(view, View.ALPHA, 1f)
+                animator.duration = 500
+                animator.start()
+                view.visibility = View.VISIBLE
             }
         }
     }

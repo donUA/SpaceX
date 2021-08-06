@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bossco.spacexclient.models.Info
+import com.bossco.spacexclient.models.Launch
 import com.bossco.spacexclient.repositories.AppRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,6 +21,10 @@ class AppViewModel @Inject constructor(private val repository: AppRepository) : 
     private var infoMutable = MutableLiveData<Info>()
     val infoLiveData: LiveData<Info>
         get() = infoMutable
+
+    private var launchMutableData = MutableLiveData<List<Launch>>()
+    val launchLiveData: LiveData<List<Launch>>
+        get() = launchMutableData
 
     private var progressMutableLiveData = MutableLiveData<Boolean>()
     val progressLiveData: LiveData<Boolean>
@@ -41,12 +46,33 @@ class AppViewModel @Inject constructor(private val repository: AppRepository) : 
 
     }
 
+    fun getLaunchData(){
+        viewModelScope.launch {
+            repository.getLaunchData(
+                launchMutableData,
+                progressMutableLiveData,
+                messagesMutableLiveData
+            )
+        }
+
+    }
+
     fun saveInfo(info: Info){
         viewModelScope.launch {
             repository.saveInfo(info)
         }
     }
 
+    fun saveLaunches(launch: List<Launch>){
+        viewModelScope.launch {
+            repository.saveLaunch(launch)
+        }
+    }
+
     val infoMessage = repository.infoMessage
+
+    val launchMessage = repository.launchMessage
+
+
 
 }

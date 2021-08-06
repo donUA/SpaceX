@@ -16,5 +16,5 @@ interface RetroInterface {
 
 
     @GET("v3/launches")
-    fun getLaunches(): Call<Launch>
+    fun getLaunches(): Call<List<Launch>>
 }

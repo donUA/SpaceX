@@ -4,6 +4,7 @@ import android.app.Application
 import com.bossco.spacexclient.di.AppComponent
 import com.bossco.spacexclient.di.AppModule
 import com.bossco.spacexclient.di.DaggerAppComponent
+import timber.log.Timber
 
 /**
  * Created by Don Muthiani on 8/5/21.
@@ -14,6 +15,7 @@ open class MyApplication : Application() {
     lateinit var appComponent: AppComponent
     override fun onCreate() {
         super.onCreate()
+        Timber.plant(Timber.DebugTree())
         appComponent = DaggerAppComponent.builder().appModule(AppModule(application = this)).build()
 
     }

@@ -10,16 +10,16 @@ import androidx.room.TypeConverters
 
  */
 @Entity(tableName = "launch")
-data class Launch(
+ class Launch(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val mission_name: String? = null,
     val launch_date_unix: Long? = null,
     val launch_success: Boolean? = null,
     @TypeConverters
-    val rocket: List<Rocket>? = null,
+    val rocket: Rocket? = null,
     @TypeConverters
-    var links: List<Links>? = null
+    var links: Links? = null
 )
 
 data class Rocket(

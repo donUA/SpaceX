@@ -7,13 +7,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.bossco.spacexclient.models.Info
+import com.bossco.spacexclient.models.Launch
 
 /**
  * Created by Don Muthiani on 8/5/21.
  * Copyright (c) 2021 Accuret. All rights reserved.
 
  */
-@Database(entities = [Info::class], version = 2)
+@Database(entities = [Info::class, Launch::class], version = 4)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

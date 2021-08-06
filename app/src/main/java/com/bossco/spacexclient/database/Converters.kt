@@ -13,19 +13,18 @@ import java.util.*
  */
 class Converters {
 
+    @TypeConverter
+    fun rocketToString(value: Rocket): String = Gson().toJson(value)
+
+    @TypeConverter
+    fun stringToRocket(string: String): Rocket = Gson().fromJson(string, Rocket::class.java)
 
 
     @TypeConverter
-    fun listToRocket(value: List<Rocket>?): String? = Gson().toJson(value)
+    fun linksToString(value: Links?): String? = Gson().toJson(value)
 
     @TypeConverter
-    fun jsonToRocket(value: String) = Gson().fromJson(value, Array<Rocket>::class.java).toList()
-
-    @TypeConverter
-    fun listToLinks(value: List<Links>?): String? = Gson().toJson(value)
-
-    @TypeConverter
-    fun jsonToLinks(value: String) = Gson().fromJson(value, Array<Links>::class.java).toList()
+    fun stringToLinks(value: String) = Gson().fromJson(value, Links::class.java)
 
 
 
