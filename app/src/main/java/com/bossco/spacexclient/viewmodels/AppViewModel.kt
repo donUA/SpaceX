@@ -42,7 +42,9 @@ class AppViewModel @Inject constructor(private val repository: AppRepository) : 
     }
 
     fun saveInfo(info: Info){
-        repository.saveInfo(info)
+        viewModelScope.launch {
+            repository.saveInfo(info)
+        }
     }
 
     val infoMessage = repository.infoMessage

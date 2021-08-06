@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="launch"
+            type="com.bossco.spacexclient.models.Launch" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/mission_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/mission_image"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mission_title"
+        android:text="@string/mission"
+        android:layout_marginStart="@dimen/dimen_1"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
+        android:textColor="@color/material_on_background_disabled"
+        app:layout_constraintTop_toTopOf="@id/mission_image"
+        app:layout_constraintStart_toEndOf="@id/mission_image"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mission_text"
+        android:layout_marginStart="@dimen/dimen_1"
+        android:text="@{launch.mission_name}"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintTop_toTopOf="@id/mission_image"
+        app:layout_constraintStart_toEndOf="@id/mission_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mission_date_title"
+        android:text="@string/date_time"
+        android:layout_marginStart="@dimen/dimen_1"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
+        android:textColor="@color/material_on_background_disabled"
+        app:layout_constraintTop_toBottomOf="@id/mission_title"
+        app:layout_constraintStart_toEndOf="@id/mission_image"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mission_date_text"
+        android:layout_marginStart="@dimen/dimen_1"
+        bindDateTime="@{launch.launch_date_unix}"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintTop_toTopOf="@id/mission_date_title"
+        app:layout_constraintStart_toEndOf="@id/mission_date_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rocket_title"
+        android:text="@string/rocket_title"
+        android:layout_marginStart="@dimen/dimen_1"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
+        android:textColor="@color/material_on_background_disabled"
+        app:layout_constraintTop_toBottomOf="@id/mission_date_title"
+        app:layout_constraintStart_toEndOf="@id/mission_image"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rocket_text"
+        android:layout_marginStart="@dimen/dimen_1"
+        bindRocket="@{launch.rocket}"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintTop_toTopOf="@id/rocket_title"
+        app:layout_constraintStart_toEndOf="@id/rocket_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/days_title"
+        bindDaysTitle="@{launch.launch_date_unix}"
+        android:layout_marginStart="@dimen/dimen_1"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
+        android:textColor="@color/material_on_background_disabled"
+        app:layout_constraintTop_toBottomOf="@id/rocket_title"
+        app:layout_constraintStart_toEndOf="@id/mission_image"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/days_text"
+        android:layout_marginStart="@dimen/dimen_1"
+        bindDaysText="@{launch.launch_date_unix}"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintTop_toTopOf="@id/days_title"
+        app:layout_constraintStart_toEndOf="@id/days_title"/>
+
+
+
+
+    
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -16,7 +16,7 @@ import com.bossco.spacexclient.models.Info
 interface AppDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertInfo(info: Info)
+    suspend fun insertInfo(info: Info)
 
 
     @Query("SELECT * FROM INFO")

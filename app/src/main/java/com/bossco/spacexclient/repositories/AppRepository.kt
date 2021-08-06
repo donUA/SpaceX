@@ -51,7 +51,7 @@ class AppRepository @Inject constructor(
 
     val infoMessage = appDao.getInFo()
 
-    fun saveInfo(info: Info) {
+    suspend fun saveInfo(info: Info) {
         appDao.insertInfo(info)
 
     }

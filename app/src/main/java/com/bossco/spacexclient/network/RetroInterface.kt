@@ -1,6 +1,7 @@
 package com.bossco.spacexclient.network
 
 import com.bossco.spacexclient.models.Info
+import com.bossco.spacexclient.models.Launch
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -10,7 +11,10 @@ import retrofit2.http.GET
 
  */
 interface RetroInterface {
-    @GET("3/info")
+    @GET("v3/info")
     fun getInfo(): Call<Info>
 
+
+    @GET("v3/launches")
+    fun getLaunches(): Call<Launch>
 }

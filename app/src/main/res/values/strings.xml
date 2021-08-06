@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SpaceX</string>
+    <string name="info_text_template">%1s was founded by %2s in %3s. It now has %4s employees,%5s launch sites, and is valued at USD %6s</string>
+    <string name="company">COMPANY</string>
+    <string name="launches">launches</string>
+    <string name="mission_image">mission image</string>
+    <string name="mission">Mission: </string>
+    <string name="date_time">Date/Time: </string>
+    <string name="set_launch_date">%1s at %2s</string>
+    <string name="rocket_title">Rocket: </string>
+    <string name="rocket_details">%1s / %2s</string>
 </resources>

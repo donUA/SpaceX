@@ -17,5 +17,6 @@ class Info(
     var founder: String? = null,
     var founded: Int? = null,
     var employees: Int? = null,
-    var launchSites: Int? = null
+    var launch_sites: Int? = null,
+    var valuation: String? = null
 )
