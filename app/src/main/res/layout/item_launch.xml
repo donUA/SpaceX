@@ -22,7 +22,7 @@
         android:padding="@dimen/dimen_2"
         android:clickable="true"
         android:focusable="true"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        android:background="?attr/selectableItemBackground"
         android:layout_marginTop="@dimen/dimen_2"
         android:layout_height="wrap_content"
         android:onClick="@{clickListener}">

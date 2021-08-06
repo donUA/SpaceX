@@ -73,7 +73,7 @@ class AppRepository @Inject constructor(
                         Timber.i("onFailure ${t.message}")
                         launchMutableData.postValue(null)
                         progressMutableLiveData.postValue(false)
-                        messagesMutableLiveData.postValue(t.message)
+                        messagesMutableLiveData.postValue("Error connecting to SpaceX, check internet")
                     }
 
                 })
