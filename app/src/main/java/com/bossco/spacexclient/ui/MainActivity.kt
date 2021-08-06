@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.style.TtsSpan
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bossco.MyApplication
@@ -133,5 +135,26 @@ class MainActivity : AppCompatActivity() {
     private fun initToolbar() {
         setSupportActionBar(binding.toolbarMain)
         supportActionBar?.title = getString(R.string.app_name)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.filter -> {
+                openFilterOptions()
+                true
+
+            }
+            else -> {return super.onOptionsItemSelected(item)}
+        }
+
+    }
+
+    private fun openFilterOptions() {
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_filter, menu)
+        return true
     }
 }

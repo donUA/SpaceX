@@ -9,4 +9,5 @@
     <string name="set_launch_date">%1s at %2s</string>
     <string name="rocket_title">Rocket: </string>
     <string name="rocket_details">%1s / %2s</string>
+    <string name="filter">Filter</string>
 </resources>
