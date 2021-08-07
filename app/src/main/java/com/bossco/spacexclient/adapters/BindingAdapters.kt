@@ -35,8 +35,10 @@ fun bindCompanyInfo(view: TextView, info: Info?) {
 @BindingAdapter("bindDateTime")
 fun bindDateTime(view: TextView, date: Long?) {
 
+
+
     date?.let {
-        val calender = Calendar.getInstance().apply { timeInMillis = it }
+        val calender = Calendar.getInstance().apply { timeInMillis = it*1000L }
 
         val formattedDate =
             DateFormatter.format(calender.time, DateFormatter.Template.STRING_DAY_MONTH_YEAR)
