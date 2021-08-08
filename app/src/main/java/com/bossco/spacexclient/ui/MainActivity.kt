@@ -102,7 +102,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
         appViewModel.infoLiveData.observe(this, { value ->
-            binding.isInfoNull = value == null
             value?.let { info ->
                 lifecycleScope.launch {
                     appViewModel.saveInfo(info)
@@ -112,7 +111,6 @@ class MainActivity : AppCompatActivity() {
 
         appViewModel.launchLiveData.observe(this, { value ->
 
-            binding.isDataNull = value == null
             Timber.i("data null ${value == null}")
 
             value?.let { launchList ->
@@ -125,6 +123,8 @@ class MainActivity : AppCompatActivity() {
 
 
         appViewModel.infoMessage.observe(this, { value ->
+            binding.isInfoNull = value==null
+
             value?.let { info ->
                 binding.info = info
             }
@@ -132,6 +132,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         appViewModel.launchMessage.observe(this, { value ->
+            binding.isDataNull = value == null
             value?.let { list: List<Launch> ->
                 launchAdapter.submitList(list)
             }
