@@ -1,4 +1,5 @@
-# ASOS Exercise: SpaceX client
+#SpaceX client
+This application demonstrates the use of MVVM architecture in android app development.
 
 ## Installation
 
